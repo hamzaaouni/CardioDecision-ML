@@ -1,20 +1,154 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# CardioDecision-ML
 
-# Run and deploy your AI Studio app
+Systeme d'aide a la decision medicale base sur le Machine Learning pour le diagnostic des maladies cardiovasculaires.
 
-This contains everything you need to run your app locally.
+## A propos du projet
 
-View your app in AI Studio: https://ai.studio/apps/759c42cb-cbf7-40a2-8c6d-d49b2508e7c1
+Ce depot contient le tableau de bord de visualisation et de presentation d'un projet PFE autour du diagnostic cardiovasculaire assiste par IA.
 
-## Run Locally
+- Etudiant: AOUNI Hamza
+- Encadrant: Pr. JILALI ANTARI
+- Annee: PFE 2026
 
-**Prerequisites:**  Node.js
+## Objectif
 
+Developper une approche de prediction du risque cardiovasculaire et presenter de maniere claire:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- la structure des donnees
+- les distributions cliniques
+- l'importance des variables
+- le pipeline complet de developpement ML
+
+## Dataset
+
+Le projet s'appuie sur le dataset cardiovasculaire Kaggle (cardio_train.csv).
+
+- Taille: 70 000 patients
+- Variables: 12 features principales
+- Variable cible: cardio (binaire)
+- Repartition des classes:
+  - Sains: 35 021
+  - Malades: 34 979
+
+### Variables principales
+
+- Demographiques: age, gender, height, weight
+- Cliniques: ap_hi, ap_lo, cholesterol, gluc
+- Mode de vie: smoke, alco, active
+- Cible: cardio
+
+## Pipeline ML (complet)
+
+Le pipeline presente dans le dashboard suit les etapes suivantes:
+
+1. Donnees brutes
+   - Source: Kaggle CVD
+   - 70 000 patients, 12 variables
+
+2. Preprocessing
+   - Nettoyage / gestion des outliers
+   - Feature engineering (ex: BMI, pulse pressure)
+   - Normalisation / encodage
+
+3. Split train/test (80/20)
+   - Separation stratifiee
+   - Train: 56 000
+   - Test: 14 000
+
+4. Entrainement multi-modeles
+   - Logistic Regression
+   - Decision Tree
+   - Random Forest
+   - SVM
+   - KNN
+   - AdaBoost
+   - XGBoost
+   - LightGBM
+
+5. Optimisation hyperparametres
+   - Optuna (Bayesian search)
+
+6. Evaluation et benchmarking
+   - Accuracy / F1
+   - ROC-AUC / PR-AUC
+   - Recall (metrique critique)
+   - McNemar test
+   - Validation croisee, matrice de confusion, classification report
+
+7. Explainability
+   - SHAP global et local
+   - Explications patient-level
+
+8. Selection finale & deploiement
+   - Choix du meilleur modele selon performance et stabilite
+   - Integration dans une interface de support a la decision
+
+## Dashboard: contenu principal
+
+Le dashboard Next.js inclut:
+
+- Vue d'ensemble des metriques
+- Analyse des distributions (age, classes, clinique, mode de vie)
+- Dictionnaire des variables
+- Feature importance (Random Forest)
+- Visualisation du pipeline de developpement
+- Notes de preprocessing
+
+## Stack technique
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Recharts
+- Framer Motion
+- Lucide Icons
+- pnpm
+
+## Lancement local
+
+Prerequis: Node.js 20+ et pnpm
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Build production:
+
+```bash
+pnpm build
+pnpm start
+```
+
+## Structure du projet
+
+```text
+src/
+  app/
+    layout.tsx
+    page.tsx
+    globals.css
+  components/
+    dashboard-header.tsx
+    overview-metrics.tsx
+    distribution-charts.tsx
+    feature-dictionary.tsx
+    feature-importance.tsx
+    pipeline.tsx
+    preprocessing-notes.tsx
+    floating-nav.tsx
+    site-footer.tsx
+  lib/
+    data.ts
+    utils.ts
+```
+
+## Credits
+
+- Realise par: AOUNI Hamza
+- Encadrement: Pr. JILALI ANTARI
+
+## License
+
+Projet academique - PFE 2026.
