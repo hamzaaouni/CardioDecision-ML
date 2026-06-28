@@ -55,6 +55,15 @@ The companion clinical tool turns raw inputs into a calibrated risk score with a
 
 *Risk bands: 🟢 LOW < 30 % · 🟡 MODERATE 30–65 % · 🔴 HIGH ≥ 65 %. Cholesterol/glucose are ordinal (Normal / Above normal / High).*
 
+### The three scenarios, live in the predictor
+
+| 🟢 Low risk | 🟡 Moderate risk | 🔴 High risk |
+| :---: | :---: | :---: |
+| <img src="docs/figures/scenario-low.png" width="100%"/> | <img src="docs/figures/scenario-moderate.png" width="100%"/> | <img src="docs/figures/scenario-high.png" width="100%"/> |
+| **7.1 %** — healthy 35 y/o | **64.5 %** — 54 y/o, elevated BP | **81.0 %** — 62 y/o, multiple risk factors |
+
+> Each scenario is reproducible on the deployed predictor via a **shareable link**, e.g. `…streamlit.app/?scenario=high` (also `low` / `moderate`). Every prediction comes with its own SHAP explanation of the contributing factors.
+
 ### ▶ Watch the demo
 
 <video src="https://github.com/hamzaaouni/CardioDecision-ML/raw/main/public/demo.mp4" controls muted width="100%"></video>
