@@ -13,7 +13,7 @@
 [![Best model](https://img.shields.io/badge/XGBoost-ROC--AUC_0.802-success)](#-key-results)
 [![License](https://img.shields.io/badge/License-Academic_(PFE_2026)-blue)](#-license)
 
-**[▶ Live Dashboard](https://cardio-decision-ml.vercel.app/)** · **[🎬 Demo Video](#-watch-the-demo)** · **[📄 Thesis (PDF)](https://github.com/hamzaaouni/pfe/blob/main/rapport/Memoire_PFE_AOUNI_Hamza.pdf)** · **[📈 Results](#-results)**
+**[▶ Live Dashboard](https://cardio-decision-ml.vercel.app/)** · **[🩺 Live Predictor](https://hamzaaouni-cardio-cvd-predictor-app-aomrpd.streamlit.app/)** · **[🎬 Demo Video](#-watch-the-demo)** · **[📄 Thesis (PDF)](https://github.com/hamzaaouni/pfe/blob/main/rapport/Memoire_PFE_AOUNI_Hamza.pdf)**
 
 </div>
 
@@ -62,7 +62,7 @@ The companion clinical tool turns raw inputs into a calibrated risk score with a
 | <img src="docs/figures/scenario-low.png" width="100%"/> | <img src="docs/figures/scenario-moderate.png" width="100%"/> | <img src="docs/figures/scenario-high.png" width="100%"/> |
 | **7.1 %** — healthy 35 y/o | **64.5 %** — 54 y/o, elevated BP | **81.0 %** — 62 y/o, multiple risk factors |
 
-> Each scenario is reproducible on the deployed predictor via a **shareable link**, e.g. `…streamlit.app/?scenario=high` (also `low` / `moderate`). Every prediction comes with its own SHAP explanation of the contributing factors.
+> Try them live on the deployed predictor: [▶ low](https://hamzaaouni-cardio-cvd-predictor-app-aomrpd.streamlit.app/?scenario=low) · [▶ moderate](https://hamzaaouni-cardio-cvd-predictor-app-aomrpd.streamlit.app/?scenario=moderate) · [▶ high](https://hamzaaouni-cardio-cvd-predictor-app-aomrpd.streamlit.app/?scenario=high). Every prediction comes with its own SHAP explanation of the contributing factors.
 
 ### ▶ Watch the demo
 
