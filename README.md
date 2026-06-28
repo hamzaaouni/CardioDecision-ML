@@ -13,11 +13,9 @@
 [![Best model](https://img.shields.io/badge/XGBoost-ROC--AUC_0.802-success)](#-key-results)
 [![License](https://img.shields.io/badge/License-Academic_(PFE_2026)-blue)](#-license)
 
-**[▶ Live Dashboard](https://cardiodecision-ml.vercel.app)** · **[🎬 Demo Video](https://github.com/hamzaaouni/CardioDecision-ML/raw/main/public/demo.mp4)** · **[📄 Thesis (PDF)](https://github.com/hamzaaouni/pfe/blob/main/rapport/Memoire_PFE_AOUNI_Hamza.pdf)** · **[📈 Results](#-results)**
+**[▶ Live Dashboard](https://cardio-decision-ml.vercel.app/)** · **[🎬 Demo Video](#-watch-the-demo)** · **[📄 Thesis (PDF)](https://github.com/hamzaaouni/pfe/blob/main/rapport/Memoire_PFE_AOUNI_Hamza.pdf)** · **[📈 Results](#-results)**
 
 </div>
-
-> ⚠️ **Replace the Live Dashboard link** with your real Vercel URL after the first deploy (see [Deployment](#️-deployment-vercel)).
 
 ---
 
@@ -57,9 +55,23 @@ The companion clinical tool turns raw inputs into a calibrated risk score with a
 
 *Risk bands: 🟢 LOW < 30 % · 🟡 MODERATE 30–65 % · 🔴 HIGH ≥ 65 %. Cholesterol/glucose are ordinal (Normal / Above normal / High).*
 
-▶ **Watch the full walkthrough:** [`demo.mp4`](https://github.com/hamzaaouni/CardioDecision-ML/raw/main/public/demo.mp4) *(also served at `/demo.mp4` on the live site once deployed).*
+### ▶ Watch the demo
+
+<video src="https://github.com/hamzaaouni/CardioDecision-ML/raw/main/public/demo.mp4" controls muted width="100%"></video>
+
+> If the inline player doesn't load, open **[demo.mp4 on GitHub](https://github.com/hamzaaouni/CardioDecision-ML/blob/main/public/demo.mp4)** (plays in-browser) or watch it on the live site: **[cardio-decision-ml.vercel.app/demo.mp4](https://cardio-decision-ml.vercel.app/demo.mp4)**.
 
 ---
+
+## 🏗️ Architecture
+
+<p align="center"><img src="docs/figures/architecture-diagram.png" alt="System architecture" width="92%" /></p>
+
+A single reproducible model is produced by the Python pipeline and consumed by **two front-ends**: an interactive **Streamlit** predictor (the demo above) and this **Next.js** analytics dashboard (deployed on Vercel).
+
+## 🧪 Methodology — ML Pipeline
+
+<p align="center"><img src="docs/figures/pipeline-diagram.png" alt="End-to-end ML pipeline" width="56%" /></p>
 
 ## 📈 Results
 
@@ -82,31 +94,21 @@ The companion clinical tool turns raw inputs into a calibrated risk score with a
 
 ## 🖥️ The Dashboard
 
-A single-page, animated analytics dashboard built with Next.js. Sections:
+A single-page, animated analytics dashboard built with Next.js — overview metrics, clinical distributions, a feature dictionary, ranked feature importance, the full ML pipeline, and preprocessing notes.
 
-1. **Overview metrics** — dataset size, features, class balance
-2. **Distributions** — age, target classes, clinical markers, lifestyle factors
-3. **Feature dictionary** — every variable with clinical meaning
-4. **Feature importance** — ranked predictors
-5. **ML pipeline** — the full development workflow
-6. **Preprocessing notes** — cleaning, feature engineering, balancing
+<p align="center">
+  <img src="docs/figures/dashboard-features.png" alt="Dashboard — clinical feature dictionary" width="100%" /><br/>
+  <em>Clinical feature dictionary — every variable with its medical meaning</em>
+</p>
 
-> 📌 **Dashboard screenshots:** add UI captures from your live Vercel page into `docs/figures/` and embed them here. They weren't auto-captured because this build environment is offline (the dashboard's Google web-fonts can't be fetched to render it here). Once the site is deployed, screenshots take seconds to grab from the live page.
+<p align="center">
+  <img src="docs/figures/dashboard-pipeline.png" alt="Dashboard — ML pipeline view" width="68%" /><br/>
+  <em>The end-to-end ML pipeline, visualised in the dashboard</em>
+</p>
+
+> 📷 Screenshots captured from the live deployment at **[cardio-decision-ml.vercel.app](https://cardio-decision-ml.vercel.app/)**.
 
 ---
-
-## 🧪 Methodology — ML Pipeline
-
-```
-Raw data (Kaggle CVD, 70k)
-   └─▶ Preprocessing      outlier removal · feature engineering (BMI, pulse pressure, MAP, categories) · scaling
-   └─▶ Train/test split   stratified 80/20 · SMOTE on the training set only (after the split)
-   └─▶ Benchmarking       8 algorithms: LogReg · DecisionTree · RandomForest · SVM · KNN · AdaBoost · XGBoost · LightGBM
-   └─▶ Tuning             Optuna Bayesian search (XGBoost, LightGBM, RandomForest)
-   └─▶ Evaluation         ROC/PR-AUC · recall (primary) · MCC · CV · McNemar · DeLong · bootstrap CI
-   └─▶ Explainability     SHAP global + local + counterfactual · fairness audit (Fairlearn)
-   └─▶ Threshold + deploy operating threshold 0.27 · Streamlit clinical tool + this dashboard
-```
 
 ## 📦 Dataset
 
@@ -145,10 +147,10 @@ pnpm build && pnpm start    # (or: npm run build && npm start)
 
 This is a standard Next.js app — **no environment variables required**.
 
-1. Push this repo to GitHub (done).
+1. Push the repo to GitHub (done).
 2. Go to **[vercel.com/new](https://vercel.com/new)** and **Import** `hamzaaouni/CardioDecision-ML`.
 3. Vercel auto-detects Next.js — keep the defaults and click **Deploy**.
-4. Copy the resulting URL (e.g. `https://cardiodecision-ml.vercel.app`) and paste it into the **Live Dashboard** link at the top of this README.
+4. The app is live at **[cardio-decision-ml.vercel.app](https://cardio-decision-ml.vercel.app/)** and auto-redeploys on every push to `main`.
 
 Or from the CLI:
 
@@ -167,9 +169,13 @@ src/
                   feature-dictionary · feature-importance · pipeline ·
                   preprocessing-notes · floating-nav · site-footer · ui/*
   lib/            data.ts (all dashboard content) · utils.ts
-docs/figures/     model-result figures used in this README
+docs/figures/     designed diagrams, dashboard screenshots & model-result figures
 public/           demo.mp4 (interactive prediction walkthrough)
 ```
+
+## 🔗 Related
+
+- **Thesis & full ML pipeline:** [github.com/hamzaaouni/pfe](https://github.com/hamzaaouni/pfe) — report (PDF), notebook, trained models, and the Streamlit clinical predictor (`code/app.py`).
 
 ## 👤 Author & Supervision
 
